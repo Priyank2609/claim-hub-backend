@@ -20,7 +20,7 @@ module.exports.createPolicy = async (req, res) => {
       return res.status(404).json({ message: "Policy already exists" });
     }
 
-    // Create policy in DB
+  
     const newPolicy = await PolicyModel.create({
       policyNumber,
       policyType,
@@ -28,7 +28,7 @@ module.exports.createPolicy = async (req, res) => {
       premium
     });
 
-    // Update quote
+  
     const quote = await QuoteModel.findById(quoteId);
     quote.policyId = newPolicy._id;
     quote.status = "Approved";
@@ -45,9 +45,6 @@ module.exports.createPolicy = async (req, res) => {
 
     await newPolicy.save();
 
-    // ==============================
-    // Generate PDF for this policy
-    // ==============================
     const policiesDir = path.resolve(__dirname, '../policies');
     if (!fs.existsSync(policiesDir)) fs.mkdirSync(policiesDir, { recursive: true });
 
@@ -64,7 +61,7 @@ module.exports.createPolicy = async (req, res) => {
     doc.text(`Start Date: ${newPolicy.startDate}`);
     doc.text(`End Date: ${newPolicy.endDate}`);
     doc.end();
-    // ==============================
+
 
     res.status(200).json({ message: "Policy is created", newPolicy, pdfPath });
   } catch (error) {

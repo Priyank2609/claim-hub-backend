@@ -117,9 +117,6 @@ module.exports.claimSummary = async (req, res) => {
   try {
     const claims = await ClaimModel.find()
 
-
-
-
     const totalClaims = claims.length
     // console.log(totalClaims);
     const claimSubmitted = claims.filter((item) => item.status === "Submitted").length
