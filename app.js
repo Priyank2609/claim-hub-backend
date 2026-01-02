@@ -33,7 +33,9 @@ app.use('/claims', claimRoutes)
 app.use('/quotes', quoteRoutes)
 app.use('/supports', supportRoutes)
 
-
+app.get('/', (req, res) => {
+  res.send("Backend is working ")
+})
 
 app.listen(process.env.PORT, () => {
   console.log("I am listening", process.env.PORT);

@@ -9,6 +9,7 @@ module.exports.generateToken = (user, res) => {
   res.cookie("Insurance_Token", token, {
     httpOnly: true,
     secure: true,
+    sameSite: "none",
     maxAge: 24 * 60 * 60 * 1000
   })
 
