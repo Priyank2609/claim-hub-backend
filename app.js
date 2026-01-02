@@ -21,7 +21,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 const urlOrigin = {
-  origin: "https://claim-hub-frontend-j30fmbd11-priyank2609s-projects.vercel.app",
+  origin: "https://claim-hub-frontend.vercel.app",
   credentials: true
 }
 
@@ -34,7 +34,7 @@ app.use('/quotes', quoteRoutes)
 app.use('/supports', supportRoutes)
 
 app.get('/', (req, res) => {
-  res.send("Backend is working ")
+  res.send("Backend is working")
 })
 
 app.listen(process.env.PORT, () => {
