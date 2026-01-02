@@ -11,6 +11,11 @@ module.exports.createPolicy = async (req, res) => {
     const quoteId = req.params.id;
     const { policyNumber, policyType, coverageAmount, premium } = req.body;
 
+
+    if (!policyNumber || !policyType || !coverageAmount || !premium) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
     if (!quoteId) {
       return res.status(404).json({ message: "Quote ID is not present" });
     }
@@ -20,7 +25,7 @@ module.exports.createPolicy = async (req, res) => {
       return res.status(404).json({ message: "Policy already exists" });
     }
 
-  
+
     const newPolicy = await PolicyModel.create({
       policyNumber,
       policyType,
@@ -28,7 +33,7 @@ module.exports.createPolicy = async (req, res) => {
       premium
     });
 
-  
+
     const quote = await QuoteModel.findById(quoteId);
     quote.policyId = newPolicy._id;
     quote.status = "Approved";
