@@ -119,6 +119,9 @@ module.exports.changePassword = async (req, res) => {
   try {
     const { password, newPassword, confirmPassword } = req.body
 
+    if (!password || !newPassword || !confirmPassword) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
     const user = await UserModel.findById(req.user.id)
 
     const checkPassword = await user.passwordCheck(password)
