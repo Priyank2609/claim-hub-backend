@@ -6,6 +6,9 @@ module.exports.createClaim = async (req, res) => {
   try {
     const { claimAmount, claimType, policyNo, reason } = req.body
 
+    if (!claimAmount || !claimType || !policyNo || !reason) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
     const claimNumber = Date.now()
     console.log(claimNumber);
 
