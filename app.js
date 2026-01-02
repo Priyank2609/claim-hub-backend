@@ -21,7 +21,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 const urlOrigin = {
-  origin: "https://claim-hub-frontend-r10n8t6g9-priyank2609s-projects.vercel.app/",
+  origin: "https://claim-hub-frontend-r10n8t6g9-priyank2609s-projects.vercel.app",
   credentials: true
 }
 
