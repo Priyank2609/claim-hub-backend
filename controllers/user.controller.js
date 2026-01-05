@@ -65,6 +65,18 @@ module.exports.userDetail = async (req, res) => {
     res.status(500).json({ message: "Something went wrong ", error: error.message })
   }
 }
+module.exports.userDetailById = async (req, res) => {
+  try {
+    const userId = req.params.id
+    const user = await UserModel.findById(userId)
+
+    res.status(200).json({ message: "User Detail", user })
+
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong ", error: error.message })
+  }
+}
+
 
 
 
