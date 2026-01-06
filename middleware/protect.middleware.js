@@ -1,8 +1,8 @@
-// const jwt = require("jsonwebtoken");
+
 
 
 const jwt = require('jsonwebtoken');
-const User = require('../models/user.model'); // adjust path
+const User = require('../models/user.model');
 
 module.exports.protect = async (req, res, next) => {
   try {
@@ -20,7 +20,7 @@ module.exports.protect = async (req, res, next) => {
       return res.status(401).json({ message: "User not found" });
     }
 
-    req.user = user; // ✅ REAL USER OBJECT
+    req.user = user;
     next();
 
   } catch (error) {
